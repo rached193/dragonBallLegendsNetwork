@@ -47,7 +47,6 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   ngDoCheck() {

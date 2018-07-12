@@ -40,11 +40,13 @@ export class ForceDirectedGraph {
 
     this.simulation.force('links',
       d3.forceLink(this.links)
-        .id(function(item) {
+        .id(function (item) {
           return item['id'];
         })
-        .strength(FORCES.LINKS)
-    );
+        .strength(FORCES.LINKS),
+    ).force('charge', d3.forceManyBody())
+      .force('center', d3.forceCenter(400, 400));
+    ;
   }
 
   initSimulation(options) {
