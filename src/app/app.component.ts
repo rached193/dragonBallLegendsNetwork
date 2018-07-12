@@ -74,17 +74,15 @@ export class AppComponent implements OnInit {
   }
 
   generateLinks(list: Array<Character>) {
-    const map_target = new Map();
-    const map_source = new Map();
+    const map_source = new Map(); // Mapa de las fuentes
+    const map_target = new Map(); // Mapa de los objetivos
+
 
     let generated_liks = [];
     const generate_nodes = [];
 
     list.forEach(item => {
-      if (map_source.has(item.target)) {
-        generated_liks = [...generated_liks, ...this.sourceLinks(map_source.get(item.target), item.id)];
-      }
-
+      /** 1º Generamos los nodos **/
       generate_nodes.push({
         id: item.id,
         info: {
@@ -92,20 +90,53 @@ export class AppComponent implements OnInit {
           element: item.element
         }
       });
+
+
+      /** 2º Generamos los links  a los que apunta **/
+      if (map_source.has(item.target)) {
+        generated_liks = [...generated_liks, ...this.sourceLinks(map_source.get(item.target), item.id)];
+      }
+
+      /** 3º Recorremos los tags **/
       item.tag.forEach(tag => {
+        /** 3.1º Almacenamos en fuente sus tags **/
         if (map_source.has(tag)) {
           map_source.set(tag, [...map_source.get(tag), item.id]);
         } else {
           map_source.set(tag, [item.id]);
         }
+
+        /** 3.2º Generamos los links a los que es apuntado **/
+        if (map_target.has(tag)) {
+          generated_liks = [...generated_liks, ...this.targetLinks(map_target.get(tag), item.id)];
+        }
       });
+
+      /** 3.1º Almacenamos en target a quien apunta **/
+      if (map_target.has(item.target)) {
+        map_target.set(item.target, [...map_target.get(item.target), item.id]);
+      } else {
+        map_target.set(item.target, [item.id]);
+      }
+
 
     });
     return [generated_liks, generate_nodes];
   }
 
 
-  sourceLinks(list, target) {
+  sourceLinks(list, source) {
+    const generated_links = [];
+    list.forEach(item => {
+      generated_links.push({
+        source: source,
+        target: item
+      });
+    });
+    return generated_links;
+  }
+
+  targetLinks(list, target) {
     const generated_links = [];
     list.forEach(item => {
       generated_links.push({
@@ -113,6 +144,7 @@ export class AppComponent implements OnInit {
         target: target
       });
     });
+
     return generated_links;
   }
 
