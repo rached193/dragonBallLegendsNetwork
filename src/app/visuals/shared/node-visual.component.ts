@@ -4,18 +4,20 @@ import {Node} from '../../d3/models';
 @Component({
   selector: '[nodeVisual]',
   template: `
-    <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'">
+    <svg:g [attr.transform]="'translate(' + nodeVisual.x + ',' + nodeVisual.y + ')'">
       <svg:circle
         cx="0"
         cy="0"
         r="50">
       </svg:circle>
       <svg:text>
-        {{node.id}}
+        {{nodeInfo.name}}
       </svg:text>
     </svg:g>
-  `
+  `,
+  styleUrls: ['./node-visual.style.scss'],
 })
 export class NodeVisualComponent {
-  @Input('nodeVisual') node: Node;
+  @Input() nodeVisual: Node;
+  @Input() nodeInfo;
 }

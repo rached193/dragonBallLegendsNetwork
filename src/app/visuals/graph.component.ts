@@ -6,10 +6,11 @@ import {D3Service} from '../d3/d3.service';
 @Component({
   selector: 'db-graph',
   template: `
-    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
+    <svg #svg [attr.width]="options.width" [attr.height]="options.height">
       <g>
         <g [linkVisual]="link" *ngFor="let link of links"></g>
         <g [nodeVisual]="node"
+           [nodeInfo]="node.info"
            *ngFor="let node of nodes"
            [dbDraggableNode]="node"
            [draggableInGraph]="graph">

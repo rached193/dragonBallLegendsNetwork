@@ -36,8 +36,13 @@ export class ForceDirectedGraph {
     }
 
     // Initializing the links force simulation
+
+
     this.simulation.force('links',
       d3.forceLink(this.links)
+        .id(function(item) {
+          return item['id'];
+        })
         .strength(FORCES.LINKS)
     );
   }
