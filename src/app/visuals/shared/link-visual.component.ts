@@ -21,7 +21,7 @@ import {Link, Node} from '../../d3/models';
     </svg:defs>
     <svg:path
       [attr.d]='path_link'
-      style='stroke:rgb(255,0,0);stroke-width:1;fill:none'
+      style='stroke:rgb(105,105,105);stroke-width:1;fill:none'
       marker-end="url(#arrow)"
     ></svg:path>
   `
@@ -34,15 +34,18 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
 
 
   @Input('linkVisual') link: Link;
+
   source_x: number;
   target_x: number;
+  source_y: number;
+  target_y: number;
   path_link: string;
 
   ngOnInit() {
     this.source_x = this.link.source.x;
     this.target_x = this.link.target.x;
-    this.source_x = this.link.source.x;
-    this.target_x = this.link.target.x;
+    this.source_y = this.link.source.y;
+    this.target_y = this.link.target.y;
 
   }
 
@@ -50,8 +53,27 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
   }
 
   ngDoCheck() {
+    let dirty: Boolean = false;
     if (this.link.source.x !== this.source_x) {
       this.source_x = this.link.source.x;
+    }
+
+    if (this.link.target.x !== this.target_x) {
+      this.target_x = this.link.target.x;
+      dirty = true;
+    }
+
+    if (this.link.source.y !== this.source_y) {
+      this.source_y = this.link.source.y;
+      dirty = true;
+    }
+
+    if (this.link.source.y !== this.target_y) {
+      this.target_y = this.link.source.y;
+      dirty = true;
+    }
+
+    if (dirty) {
       this.path_link = this.positionLink(this.link.source, this.link.target);
     }
 
@@ -73,4 +95,6 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
       target.x + ',' +
       target.y;
   }
+
+
 }

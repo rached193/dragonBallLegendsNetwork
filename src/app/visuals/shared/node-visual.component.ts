@@ -5,7 +5,7 @@ import {Node} from '../../d3/models';
   selector: '[nodeVisual]',
   template: `
     <svg:g [attr.transform]="'translate(' + nodeVisual.x + ',' + nodeVisual.y + ')'">
-      <svg:circle
+      <svg:circle [attr.class]="nodeInfo.element"
         cx="0"
         cy="0"
         r="50">

@@ -4,9 +4,10 @@ import {Node} from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
-  LINKS: 1 / 50,
+  LINKS: 1 / 30,
   COLLISION: 1,
-  CHARGE: -1
+  CHARGE: -1,
+  DISTANCE: 450
 };
 
 export class ForceDirectedGraph {
@@ -43,10 +44,9 @@ export class ForceDirectedGraph {
         .id(function (item) {
           return item['id'];
         })
-        .strength(FORCES.LINKS),
-    ).force('charge', d3.forceManyBody())
-      .force('center', d3.forceCenter(400, 400));
-    ;
+        .strength(FORCES.LINKS)
+        .distance(FORCES.DISTANCE)
+    );
   }
 
   initSimulation(options) {
@@ -60,10 +60,12 @@ export class ForceDirectedGraph {
 
       // Creating the force simulation and defining the charges
       this.simulation = d3.forceSimulation()
-        .force('charge',
-          d3.forceManyBody()
-            .strength(FORCES.CHARGE)
-        );
+      // .force('charge', d3.forceManyBody().strength(FORCES.CHARGE));
+        .force('charge', null);
+
+      // Translates all nodes to visually move them into the center of the svg element.
+      this.simulation.force('center', d3.forceCenter(options.width / 2, options.height / 2));
+
 
       // Connecting the d3 ticker to an angular event emitter
       this.simulation.on('tick', function () {

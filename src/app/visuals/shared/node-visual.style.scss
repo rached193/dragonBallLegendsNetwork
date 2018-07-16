@@ -1,6 +1,26 @@
 circle {
-  stroke:black;
+  stroke: black;
   stroke-width: 2px;
   fill: white;
+
+  &.blue {
+    fill: #189ad3;
+  }
+
+  &.red {
+    fill: #c60000;
+  }
+
+  &.yellow {
+    fill: #fcfc62;
+  }
+
+  &.green {
+    fill: #6e8a11;
+  }
+
+  &.purple {
+    fill: #7057a1;
+  }
 
 }
