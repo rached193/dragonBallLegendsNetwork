@@ -6,13 +6,16 @@ import {Node} from '../../d3/models';
   template: `
     <svg:g [attr.transform]="'translate(' + nodeVisual.x + ',' + nodeVisual.y + ')'">
       <svg:circle [attr.class]="nodeInfo.element"
-        cx="0"
-        cy="0"
-        r="50">
+                  cx="0"
+                  cy="0"
+                  r="50">
       </svg:circle>
-      <svg:text>
-        {{nodeInfo.name}}
-      </svg:text>
+      <svg:image
+        x="-50" y="-40"
+        height="100" width="100"
+        xlink:href="firefox.jpg"
+        attr.xlink:href="assets/{{nodeInfo.imgSource}}.png">
+      </svg:image>
     </svg:g>
   `,
   styleUrls: ['./node-visual.style.scss'],

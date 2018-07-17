@@ -42,14 +42,14 @@ export class AppComponent implements OnInit {
       type: TYPE.ELEMENT,
       target: ELEMENT.GREEN
     },
-    {
-      name: 'Krillin',
-      id: 'DBL01-33E',
-      element: ELEMENT.RED,
-      tag: [TAG.SUPER_WARRIOR],
-      type: TYPE.ELEMENT,
-      target: ELEMENT.RED
-    },
+    // {
+    //   name: 'Krillin',
+    //   id: 'DBL01-33E',
+    //   element: ELEMENT.RED,
+    //   tag: [TAG.SUPER_WARRIOR],
+    //   type: TYPE.ELEMENT,
+    //   target: ELEMENT.RED
+    // },
     {
       name: 'Nappa',
       id: 'DBL01-19E',
@@ -74,14 +74,14 @@ export class AppComponent implements OnInit {
       type: TYPE.TAG,
       target: TAG.SAIYAN
     },
-    {
-      name: 'Gohan',
-      id: 'DBL01-36S',
-      element: ELEMENT.YELLOW,
-      tag: [TAG.HYBRID_SAIYAN, TAG.SON_FAMILY, TAG.KIDS],
-      type: TYPE.TAG,
-      target: TAG.HYBRID_SAIYAN
-    },
+    // {
+    //   name: 'Gohan',
+    //   id: 'DBL01-36S',
+    //   element: ELEMENT.YELLOW,
+    //   tag: [TAG.HYBRID_SAIYAN, TAG.SON_FAMILY, TAG.KIDS],
+    //   type: TYPE.TAG,
+    //   target: TAG.HYBRID_SAIYAN
+    // },
     {
       name: 'Goku',
       id: 'DBL01-04S',
@@ -90,22 +90,22 @@ export class AppComponent implements OnInit {
       type: TYPE.TAG,
       target: TAG.SAIYAN
     },
-    {
-      name: 'Captain Ginyu',
-      id: 'DBL01-44S',
-      element: ELEMENT.GREEN,
-      tag: [TAG.FRIEZA_FORCE, TAG.GINYU_FORCE],
-      type: TYPE.TAG,
-      target: TAG.GINYU_FORCE
-    },
-    {
-      name: 'Pan',
-      id: 'DBL01-05S',
-      element: ELEMENT.BLUE,
-      tag: [TAG.HYBRID_SAIYAN, TAG.GT, TAG.SON_FAMILY, TAG.FEMALE_WARRIOR],
-      type: TYPE.TAG,
-      target: TAG.FEMALE_WARRIOR
-    },
+    // {
+    //   name: 'Captain Ginyu',
+    //   id: 'DBL01-44S',
+    //   element: ELEMENT.GREEN,
+    //   tag: [TAG.FRIEZA_FORCE, TAG.GINYU_FORCE],
+    //   type: TYPE.TAG,
+    //   target: TAG.GINYU_FORCE
+    // },
+    // {
+    //   name: 'Pan',
+    //   id: 'DBL01-05S',
+    //   element: ELEMENT.BLUE,
+    //   tag: [TAG.HYBRID_SAIYAN, TAG.GT, TAG.SON_FAMILY, TAG.FEMALE_WARRIOR],
+    //   type: TYPE.TAG,
+    //   target: TAG.FEMALE_WARRIOR
+    // },
   ];
 
   ngOnInit() {
@@ -127,7 +127,8 @@ export class AppComponent implements OnInit {
         id: item.id,
         info: {
           name: item.name + '-' + item.id,
-          element: item.element
+          element: item.element,
+          imgSource: item.id,
         }
       });
 
