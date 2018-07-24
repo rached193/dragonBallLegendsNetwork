@@ -5,9 +5,9 @@ import * as d3 from 'd3';
 
 const FORCES = {
   LINKS: 1 / 10,
-  COLLISION: 1,
-  CHARGE: -1,
-  DISTANCE: 450
+  COLLISION: 16, // Distancia que separa cuando colisiona
+  CHARGE: -50, // Repulsion de los nodos
+  DISTANCE: 400 // Distancia minima de los enlaces
 };
 
 export class ForceDirectedGraph {
@@ -54,6 +54,9 @@ export class ForceDirectedGraph {
       throw new Error('missing options when initializing simulation');
     }
 
+    console.log(this.nodes)
+    console.log(this.links)
+
     /** Creating the simulation */
     if (!this.simulation) {
       const ticker = this.ticker;
@@ -61,7 +64,7 @@ export class ForceDirectedGraph {
       // Creating the force simulation and defining the charges
       this.simulation = d3.forceSimulation()
       // .force('charge', d3.forceManyBody().strength(FORCES.CHARGE));
-        .force('charge', null);
+        .force('charge', d3.forceManyBody().strength(FORCES.CHARGE));
 
       // Translates all nodes to visually move them into the center of the svg element.
       this.simulation.force('center', d3.forceCenter(options.width / 2, options.height / 2));

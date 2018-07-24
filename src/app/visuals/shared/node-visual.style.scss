@@ -1,27 +1,32 @@
-circle {
-  stroke: black;
-  stroke-width: 2px;
+rect {
+  stroke: rgb(0,0,0);
+  stroke-width: 1px;
   fill: white;
 
 
   &.blue {
-    fill: #189ad3;
+    fill: #0a6df9;
   }
 
   &.red {
-    fill: #c60000;
+    fill: #cb1d1d;
   }
 
   &.yellow {
-    fill: #fcfc62;
+    fill: #dcc40e;
   }
 
   &.green {
-    fill: #6e8a11;
+    fill: #1cc620;
   }
 
   &.purple {
-    fill: #7057a1;
+    fill: #8b14e0;
   }
+
+  &.gray {
+    fill: #c3c1aa;
+  }
+
 
 }

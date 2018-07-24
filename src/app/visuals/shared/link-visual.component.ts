@@ -53,7 +53,7 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit, OnDestro
 
   ngOnInit() {
     this.eventsSubscription = this.events.subscribe(() =>
-      this.path_link = this.positionLink(this.link.source, this.link.target)
+      this.path_link = this.positionCurveLink(this.link.source, this.link.target)
     );
   }
 
@@ -77,6 +77,25 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit, OnDestro
       dr + ',' + dr + ' 0 0,1 ' +
       target.x + ',' +
       target.y;
+  }
+
+  positionCurveLink(source, target) {
+    const offset = 30;
+
+    const midpoint_x = (source.x + target.x) / 2;
+    const midpoint_y = (source.y + target.y) / 2;
+
+    const dx = (target.x - source.x);
+    const dy = (target.y - source.y);
+
+    const normalise = Math.sqrt((dx * dx) + (dy * dy));
+
+    const offSetX = midpoint_x + offset * (dy / normalise);
+    const offSetY = midpoint_y - offset * (dx / normalise);
+
+    return 'M' + source.x + ',' + source.y +
+      'S' + offSetX + ',' + offSetY +
+      ' ' + target.x + ',' + target.y;
   }
 
 

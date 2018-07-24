@@ -5,11 +5,6 @@ import {Node} from '../../d3/models';
   selector: '[nodeVisual]',
   template: `
     <svg:g [attr.transform]="'translate(' + nodeVisual.x + ',' + nodeVisual.y + ')'">
-      <!--<svg:circle [attr.class]="nodeInfo.element"-->
-      <!--cx="0"-->
-      <!--cy="0"-->
-      <!--r="50">-->
-      <!--</svg:circle>-->
       <svg:image
         x="-50" y="-50"
         height="100" width="100"
@@ -18,6 +13,7 @@ import {Node} from '../../d3/models';
         (mouseenter)="openTooltip()"
       >
       </svg:image>
+      <svg:rect  [attr.class]="nodeInfo.element" x="-35" y="20" width="70" height="10"/>
     </svg:g>
   `,
   styleUrls: ['./node-visual.style.scss'],
@@ -27,7 +23,7 @@ export class NodeVisualComponent {
   @Input() nodeInfo;
 
   openTooltip = (element) => {
-    // console.log(element);
+     console.log(this.nodeVisual);
     // console.log('hello');
-  };
+  }
 }

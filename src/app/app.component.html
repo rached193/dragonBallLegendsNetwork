@@ -1,5 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="menu-container">
+  <db-menu [masterFilter]="filters" (filterChange)="reload()"></db-menu>
+</div>
 <div style="text-align:center">
-  <db-graph [nodes]="nodes" [links]="links"></db-graph>
+  <db-graph #graph [nodes]="nodes" [links]="links"></db-graph>
 </div>
 

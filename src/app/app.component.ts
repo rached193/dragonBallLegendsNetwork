@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ELEMENT, TAG, TYPE} from './globals';
 import {Character, character_list} from './character.model';
+import {GraphComponent} from './visuals/graph.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./db.style.scss']
 })
 export class AppComponent implements OnInit {
   title = 'app';
@@ -13,10 +14,26 @@ export class AppComponent implements OnInit {
   links = [];
   nodes = [];
 
-  ngOnInit() {
+  filters = {
+    type: null
+  };
 
+  @ViewChild(GraphComponent) graphComponent: GraphComponent;
+
+  ngOnInit() {
     [this.links, this.nodes] = this.generateLinks(character_list);
   }
+
+  reload() {
+    console.log('recarga');
+    this.graphComponent.graph.simulation.stop();
+    const filter_type = this.filters.type;
+    const filter_character_list = character_list.filter(function (item) {
+      return !filter_type || item.element === ELEMENT[filter_type];
+    });
+    [this.links, this.nodes] = this.generateLinks(filter_character_list);
+  }
+
 
   generateLinks(list: Array<Character>) {
     const map_source = new Map(); // Mapa de las fuentes

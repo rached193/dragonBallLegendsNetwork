@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ForceDirectedGraph} from '../d3/models';
 import {D3Service} from '../d3/d3.service';
 
@@ -20,7 +20,7 @@ import {D3Service} from '../d3/d3.service';
   `,
   styleUrls: ['./graph.component.scss'],
 })
-export class GraphComponent implements OnInit, AfterViewInit {
+export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('nodes') nodes;
   @Input('links') links;
 
@@ -38,6 +38,11 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.graph.initSimulation(this.options);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+
   }
 
 

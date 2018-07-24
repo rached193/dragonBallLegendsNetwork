@@ -8,6 +8,7 @@ import {GraphComponent} from './visuals/graph.component';
 import {NodeVisualComponent} from './visuals/shared/node-visual.component';
 import {LinkVisualComponent} from './visuals/shared/link-visual.component';
 import {D3Service} from './d3/d3.service';
+import {MenuComponent} from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {D3Service} from './d3/d3.service';
     ZoomableDirective,
     GraphComponent,
     NodeVisualComponent,
-    LinkVisualComponent
+    LinkVisualComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule
