@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ELEMENT, TAG, TYPE} from './globals';
-import {Character} from './character.model';
+import {Character, character_list} from './character.model';
 
 @Component({
   selector: 'app-root',
@@ -10,107 +10,12 @@ import {Character} from './character.model';
 export class AppComponent implements OnInit {
   title = 'app';
 
-
-  // nodes = [{
-  //   id: 'A',
-  //   info: {name: 'A'},
-  // }, {
-  //   id: 'B',
-  //   info: {name: 'B'},
-  // }, {
-  //   id: 'C',
-  //   info: {name: 'C'},
-  // }, {
-  //   id: 'D',
-  //   info: {name: 'D'},
-  // }];
-
-
   links = [];
   nodes = [];
 
-  // links = [{
-  //   source: 'A',
-  //   target: 'D'
-  // }];
-  character_list: Character[] = [
-    {
-      name: 'Picollo',
-      id: 'DBL01-07S',
-      element: ELEMENT.GREEN,
-      tag: [TAG.REGENERATION],
-      type: TYPE.ELEMENT,
-      target: ELEMENT.GREEN
-    },
-    // {
-    //   name: 'Krillin',
-    //   id: 'DBL01-33E',
-    //   element: ELEMENT.RED,
-    //   tag: [TAG.SUPER_WARRIOR],
-    //   type: TYPE.ELEMENT,
-    //   target: ELEMENT.RED
-    // },
-    {
-      name: 'Nappa',
-      id: 'DBL01-19E',
-      element: ELEMENT.RED,
-      tag: [TAG.FRIEZA_FORCE, TAG.SAIYAN],
-      type: TYPE.ELEMENT,
-      target: ELEMENT.YELLOW
-    },
-    {
-      name: 'Vegeta',
-      id: 'DBL01-17S',
-      element: ELEMENT.PURPLE,
-      tag: [TAG.FRIEZA_FORCE, TAG.SAIYAN],
-      type: TYPE.TAG,
-      target: TAG.SAIYAN
-    },
-    {
-      name: 'Goku',
-      id: 'DBL01-03S',
-      element: ELEMENT.BLUE,
-      tag: [TAG.SAIYAN, TAG.SON_FAMILY],
-      type: TYPE.TAG,
-      target: TAG.SAIYAN
-    },
-    // {
-    //   name: 'Gohan',
-    //   id: 'DBL01-36S',
-    //   element: ELEMENT.YELLOW,
-    //   tag: [TAG.HYBRID_SAIYAN, TAG.SON_FAMILY, TAG.KIDS],
-    //   type: TYPE.TAG,
-    //   target: TAG.HYBRID_SAIYAN
-    // },
-    {
-      name: 'Goku',
-      id: 'DBL01-04S',
-      element: ELEMENT.RED,
-      tag: [TAG.SAIYAN, TAG.SON_FAMILY],
-      type: TYPE.TAG,
-      target: TAG.SAIYAN
-    },
-    // {
-    //   name: 'Captain Ginyu',
-    //   id: 'DBL01-44S',
-    //   element: ELEMENT.GREEN,
-    //   tag: [TAG.FRIEZA_FORCE, TAG.GINYU_FORCE],
-    //   type: TYPE.TAG,
-    //   target: TAG.GINYU_FORCE
-    // },
-    // {
-    //   name: 'Pan',
-    //   id: 'DBL01-05S',
-    //   element: ELEMENT.BLUE,
-    //   tag: [TAG.HYBRID_SAIYAN, TAG.GT, TAG.SON_FAMILY, TAG.FEMALE_WARRIOR],
-    //   type: TYPE.TAG,
-    //   target: TAG.FEMALE_WARRIOR
-    // },
-  ];
-
   ngOnInit() {
 
-    [this.links, this.nodes] = this.generateLinks(this.character_list);
+    [this.links, this.nodes] = this.generateLinks(character_list);
   }
 
   generateLinks(list: Array<Character>) {

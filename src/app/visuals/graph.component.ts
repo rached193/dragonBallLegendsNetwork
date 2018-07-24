@@ -8,7 +8,7 @@ import {D3Service} from '../d3/d3.service';
   template: `
     <svg #svg [attr.width]="options.width" [attr.height]="options.height">
       <g>
-        <g [linkVisual]="link" *ngFor="let link of links"></g>
+        <g [linkVisual]="link" [events]="graph.ticker" *ngFor="let link of links"></g>
         <g [nodeVisual]="node"
            [nodeInfo]="node.info"
            *ngFor="let node of nodes"
@@ -48,3 +48,4 @@ export class GraphComponent implements OnInit, AfterViewInit {
     };
   }
 }
+

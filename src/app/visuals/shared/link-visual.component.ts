@@ -1,5 +1,16 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import {Link, Node} from '../../d3/models';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: '[linkVisual]',
@@ -26,7 +37,7 @@ import {Link, Node} from '../../d3/models';
     ></svg:path>
   `
 })
-export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
+export class LinkVisualComponent implements OnChanges, DoCheck, OnInit, OnDestroy {
 
 
   constructor(private cd: ChangeDetectorRef) {
@@ -34,54 +45,26 @@ export class LinkVisualComponent implements OnChanges, DoCheck, OnInit {
 
 
   @Input('linkVisual') link: Link;
+  @Input() events: Observable<void>;
 
-  source_x: number;
-  target_x: number;
-  source_y: number;
-  target_y: number;
+  private eventsSubscription: any;
   path_link: string;
 
-  ngOnInit() {
-    this.source_x = this.link.source.x;
-    this.target_x = this.link.target.x;
-    this.source_y = this.link.source.y;
-    this.target_y = this.link.target.y;
 
+  ngOnInit() {
+    this.eventsSubscription = this.events.subscribe(() =>
+      this.path_link = this.positionLink(this.link.source, this.link.target)
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
   }
 
   ngDoCheck() {
-    let dirty: Boolean = false;
-    if (this.link.source.x !== this.source_x) {
-      this.source_x = this.link.source.x;
-    }
+  }
 
-    if (this.link.target.x !== this.target_x) {
-      this.target_x = this.link.target.x;
-      dirty = true;
-    }
-
-    if (this.link.source.y !== this.source_y) {
-      this.source_y = this.link.source.y;
-      dirty = true;
-    }
-
-    if (this.link.source.y !== this.target_y) {
-      this.target_y = this.link.source.y;
-      dirty = true;
-    }
-
-    if (dirty) {
-      this.path_link = this.positionLink(this.link.source, this.link.target);
-    }
-
-
-    // if (this.link.target.x !== this.target_x) {
-    //   this.target_x = this.link.target.x;
-    //   this.cd.detectChanges();
-    // }
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
   positionLink(source, target) {
