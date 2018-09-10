@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -8,8 +8,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-    @Output() filterChange = new EventEmitter();
-    @Input() masterFilter;
 
     constructor() {
 
@@ -21,12 +19,6 @@ export class MenuComponent implements OnInit {
 
     filterType(type) {
 
-        if (this.masterFilter.type === type) {
-            this.masterFilter.type = null;
-        } else {
-            this.masterFilter.type = type;
-        }
-        this.filterChange.emit(type);
     }
 }
 

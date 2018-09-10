@@ -36,7 +36,7 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
-        RouterModule
+        RouterModule.forRoot(appRoutes)
     ],
     providers: [D3Service],
     bootstrap: [AppComponent]

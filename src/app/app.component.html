@@ -1,5 +1,9 @@
+<div>
+    <a routerLink="/network" routerLinkActive="active">Network</a>
+    <a routerLink="/team-builder" routerLinkActive="active">Team Builder</a>
+</div>
 <div class="menu-container">
-    <db-menu [masterFilter]="filters" (filterChange)="reload()"></db-menu>
+    <db-menu></db-menu>
 </div>
 
 <router-outlet></router-outlet>
