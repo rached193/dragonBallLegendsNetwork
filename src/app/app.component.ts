@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ELEMENT, TAG, TYPE} from './globals';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ELEMENT,  TYPE} from './globals';
 import {Character, character_list} from './character.model';
 import {GraphComponent} from './visuals/graph.component';
 
@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
   }
 
   reload() {
-    console.log('recarga');
     this.graphComponent.graph.simulation.stop();
     const filter_type = this.filters.type;
     const filter_character_list = character_list.filter(function (item) {
